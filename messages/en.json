@@ -1,0 +1,15 @@
+{
+  "app": {
+    "name": "Wird",
+    "tagline": "Your daily worship companion"
+  },
+  "common": {
+    "language": "العربية",
+    "toggleAria": "Switch language to Arabic"
+  },
+  "home": {
+    "welcome": "Welcome to Wird",
+    "intro": "Build a consistent daily habit — adhkar with proof, the Quran, and authentic hadith, all in one place.",
+    "streak": "Keep your streak alive"
+  }
+}

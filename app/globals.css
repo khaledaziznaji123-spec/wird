@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+:root {
+  --wird-bg: #0b1120; /* deep night */
+  --wird-fg: #e7e5e4;
+  --wird-green: #0e5c3a;
+  --wird-gold: #c9a227;
+  --wird-card: #111827;
+}
+
+@theme inline {
+  --color-background: var(--wird-bg);
+  --color-foreground: var(--wird-fg);
+  --font-sans: var(--font-cairo);
+}
+
+body {
+  background: var(--wird-bg);
+  color: var(--wird-fg);
+  font-family: var(--font-cairo), system-ui, -apple-system, sans-serif;
+}
