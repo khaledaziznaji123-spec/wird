@@ -18,9 +18,23 @@
     "login": "Log in",
     "signup": "Sign up",
     "logout": "Log out",
+    "confirmLogout": "Are you sure you want to log out?",
     "loading": "Please wait…",
     "noAccount": "New here?",
     "haveAccount": "Already have an account?"
+  },
+  "adhkar": {
+    "title": "Adhkar",
+    "subtitle": "Pick a set and work through it — each dhikr shows its proof.",
+    "tap": "Tap",
+    "done": "Done",
+    "reset": "Reset",
+    "showProof": "Show proof",
+    "hideProof": "Hide proof",
+    "back": "All adhkar",
+    "count": "adhkar",
+    "empty": "No adhkar loaded yet.",
+    "open": "Open Adhkar"
   },
   "home": {
     "welcome": "Welcome to Wird",
