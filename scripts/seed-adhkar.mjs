@@ -1,7 +1,7 @@
 /**
  * Seeds all adhkar into Supabase (idempotent — clears + reloads everything):
- *   • Morning + Evening from the Seen-Arabic dataset (WITH proof source)
- *   • 12 curated situations from Hisn al-Muslim (for topic search)
+ *   • Morning + Evening from the Seen-Arabic dataset (WITH per-dhikr proof)
+ *   • ~30 curated life situations from Hisn al-Muslim (searchable; sourced to the book)
  *
  * Run: node --env-file=.env.local scripts/seed-adhkar.mjs
  */
@@ -45,7 +45,7 @@ await supabase.from("adhkar_topics").delete().gt("adhkar_id", 0);
 await supabase.from("adhkar").delete().gt("id", 0);
 await supabase.from("topics").delete().gt("id", 0);
 
-// ---- Morning + Evening (with proofs) ----
+// ---- Morning + Evening (with per-dhikr proof) ----
 const morningId = await addTopic({ slug: "morning", name_ar: "أذكار الصباح", name_en: "Morning", kind: "routine", sort_order: 1 });
 const eveningId = await addTopic({ slug: "evening", name_ar: "أذكار المساء", name_en: "Evening", kind: "routine", sort_order: 2 });
 let total = 0;
@@ -62,35 +62,54 @@ for (const it of morningEvening) {
   total++;
 }
 
-// ---- Curated situations from Hisn al-Muslim (Hisn category ID -> our topic) ----
+// ---- Curated life situations (English name chosen to match common searches) ----
+// cats = Hisn al-Muslim category IDs merged into one topic.
 const situations = [
-  { catId: 28, slug: "sleep", name_ar: "أذكار النوم", name_en: "Before Sleep" },
-  { catId: 1, slug: "waking", name_ar: "أذكار الاستيقاظ", name_en: "Waking Up" },
-  { catId: 34, slug: "worry", name_ar: "دعاء الهمّ والحزن", name_en: "Worry & Grief" },
-  { catId: 35, slug: "distress", name_ar: "دعاء الكرب", name_en: "Distress" },
-  { catId: 25, slug: "after-prayer", name_ar: "أذكار بعد الصلاة", name_en: "After Prayer" },
-  { catId: 15, slug: "adhan", name_ar: "أذكار الأذان", name_en: "The Adhan" },
-  { catId: 49, slug: "sick", name_ar: "زيارة المريض", name_en: "Visiting the Sick" },
-  { catId: 9, slug: "wudu", name_ar: "أذكار الوضوء", name_en: "After Ablution" },
-  { catId: 11, slug: "home-enter", name_ar: "دخول المنزل", name_en: "Entering Home" },
-  { catId: 10, slug: "home-leave", name_ar: "الخروج من المنزل", name_en: "Leaving Home" },
-  { catId: 44, slug: "repentance", name_ar: "التوبة والاستغفار", name_en: "Repentance" },
-  { catId: 26, slug: "istikharah", name_ar: "صلاة الاستخارة", name_en: "Istikharah" },
+  { cats: [28], slug: "sleep", name_ar: "أذكار النوم", name_en: "Sleep" },
+  { cats: [1, 29], slug: "waking", name_ar: "أذكار الاستيقاظ", name_en: "Waking Up" },
+  { cats: [34], slug: "worry", name_ar: "الهمّ والحزن", name_en: "Worry & Sadness" },
+  { cats: [35], slug: "distress", name_ar: "الكرب والضيق", name_en: "Distress & Anguish" },
+  { cats: [30, 31], slug: "fear-sleep", name_ar: "الخوف والأرق", name_en: "Anxiety & Bad Dreams" },
+  { cats: [82], slug: "anger", name_ar: "عند الغضب", name_en: "Anger" },
+  { cats: [25], slug: "after-prayer", name_ar: "أذكار بعد الصلاة", name_en: "After Prayer" },
+  { cats: [15], slug: "adhan", name_ar: "أذكار الأذان", name_en: "The Adhan (call to prayer)" },
+  { cats: [49, 50, 51], slug: "sick", name_ar: "المريض وزيارته", name_en: "Sickness & Visiting the Sick" },
+  { cats: [8, 9], slug: "wudu", name_ar: "أذكار الوضوء", name_en: "Ablution (wudu)" },
+  { cats: [11], slug: "home-enter", name_ar: "دخول المنزل", name_en: "Entering Home" },
+  { cats: [10], slug: "home-leave", name_ar: "الخروج من المنزل", name_en: "Leaving Home" },
+  { cats: [12, 13, 14], slug: "mosque", name_ar: "المسجد", name_en: "The Mosque" },
+  { cats: [69, 70], slug: "eating", name_ar: "أذكار الطعام", name_en: "Eating" },
+  { cats: [72], slug: "drink", name_ar: "الشراب", name_en: "Drinking" },
+  { cats: [95, 96, 97], slug: "travel", name_ar: "أذكار السفر", name_en: "Travel & Riding" },
+  { cats: [98], slug: "market", name_ar: "دخول السوق", name_en: "The Market" },
+  { cats: [63, 64, 65], slug: "rain", name_ar: "المطر", name_en: "Rain" },
+  { cats: [61], slug: "wind", name_ar: "الريح", name_en: "Wind" },
+  { cats: [62], slug: "thunder", name_ar: "الرعد", name_en: "Thunder" },
+  { cats: [67], slug: "new-moon", name_ar: "رؤية الهلال", name_en: "New Moon" },
+  { cats: [79, 80, 81], slug: "marriage", name_ar: "الزواج", name_en: "Marriage & Wedding" },
+  { cats: [77, 78], slug: "sneezing", name_ar: "العطاس", name_en: "Sneezing" },
+  { cats: [41], slug: "debt", name_ar: "قضاء الدَّين", name_en: "Debt" },
+  { cats: [44, 45], slug: "repentance", name_ar: "التوبة والاستغفار", name_en: "Repentance & Forgiveness" },
+  { cats: [26], slug: "istikharah", name_ar: "صلاة الاستخارة", name_en: "Istikharah (seeking guidance)" },
+  { cats: [2, 3], slug: "clothes", name_ar: "لبس الثوب", name_en: "Getting Dressed" },
+  { cats: [6, 7], slug: "restroom", name_ar: "دخول الخلاء", name_en: "The Restroom" },
+  { cats: [48], slug: "children", name_ar: "تحصين الأطفال", name_en: "Protecting Children" },
+  { cats: [68, 73], slug: "iftar", name_ar: "الإفطار في الصوم", name_en: "Breaking the Fast" },
 ];
 let sort = 3;
 for (const s of situations) {
-  const cat = husn.find((c) => c.ID === s.catId);
-  if (!cat || !cat.TEXT?.length) continue;
+  const rows = s.cats.flatMap((id) => husn.find((c) => c.ID === id)?.TEXT ?? []);
+  if (!rows.length) continue;
   const topicId = await addTopic({ slug: s.slug, name_ar: s.name_ar, name_en: s.name_en, kind: "situational", sort_order: sort++ });
   let order = 0;
-  for (const dh of cat.TEXT) {
+  for (const dh of rows) {
     const rep = parseInt(dh.REPEAT, 10);
     const id = await addDhikr({
       arabic_text: dh.ARABIC_TEXT,
       repeat_count: Number.isFinite(rep) && rep > 0 ? rep : 1,
       count_description: null,
-      virtue: dh.LANGUAGE_ARABIC_TRANSLATED_TEXT || null,
-      source_proof: null,
+      virtue: null,
+      source_proof: `من كتاب «حصن المسلم من أذكار الكتاب والسنّة» — باب ${s.name_ar}`,
     });
     await link(id, topicId, order++);
     total++;
