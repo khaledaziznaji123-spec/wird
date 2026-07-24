@@ -19,6 +19,9 @@ export default async function AdhkarPage({
 
   return (
     <section className="mx-auto max-w-2xl px-5 py-8">
+      <Link href="/" className="mb-4 inline-block text-sm wird-muted hover:underline">
+        ← {t("nav.home")}
+      </Link>
       <h1 className="mb-2 text-3xl font-extrabold" style={{ color: "var(--wird-green)" }}>
         {t("adhkar.title")}
       </h1>

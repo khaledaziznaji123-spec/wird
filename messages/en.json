@@ -13,7 +13,8 @@
     "quran": "Quran",
     "adhkar": "Adhkar",
     "hadith": "Hadith",
-    "profile": "Profile"
+    "profile": "Profile",
+    "home": "Home"
   },
   "auth": {
     "loginTitle": "Welcome back",

@@ -13,7 +13,7 @@ export default async function QuranPage() {
       </h1>
       <p className="mt-4 wird-muted">{t("common.comingSoon")}</p>
       <Link href="/" className="wird-btn-outline mt-8">
-        ←
+        ← {t("nav.home")}
       </Link>
     </section>
   );

@@ -13,7 +13,8 @@
     "quran": "القرآن",
     "adhkar": "الأذكار",
     "hadith": "الأحاديث",
-    "profile": "ملفي"
+    "profile": "ملفي",
+    "home": "الرئيسية"
   },
   "auth": {
     "loginTitle": "أهلاً بعودتك",
