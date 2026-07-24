@@ -39,7 +39,11 @@
     "back": "All adhkar",
     "count": "adhkar",
     "empty": "No adhkar loaded yet.",
-    "open": "Open Adhkar"
+    "open": "Open Adhkar",
+    "searchPlaceholder": "Search for a dhikr about… (sleep, worry, travel)",
+    "results": "results",
+    "noResults": "No adhkar found for that — try another word.",
+    "moreTopics": "More situations"
   },
   "home": {
     "welcome": "Welcome to Wird",
