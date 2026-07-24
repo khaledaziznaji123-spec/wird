@@ -21,7 +21,8 @@ export default function LanguageToggle() {
       type="button"
       onClick={toggle}
       aria-label={t("common.toggleAria")}
-      className="rounded-full border border-white/20 px-4 py-1.5 text-sm font-semibold transition-colors hover:bg-white/10"
+      className="rounded-full px-4 py-1.5 text-sm font-semibold"
+      style={{ border: "1px solid var(--wird-border)", color: "var(--wird-green)" }}
     >
       {t("common.language")}
     </button>

@@ -20,18 +20,18 @@ export default async function TopicPage({
 
   return (
     <section className="mx-auto max-w-2xl px-5 py-8">
-      <Link href="/adhkar" className="text-sm opacity-70 hover:underline">
+      <Link href="/adhkar" className="text-sm wird-muted hover:underline">
         ← {t("adhkar.back")}
       </Link>
 
       <h1
         className="mb-1 mt-3 text-3xl font-extrabold"
-        style={{ color: "var(--wird-gold)" }}
+        style={{ color: "var(--wird-green)" }}
       >
         {slug === "morning" ? "🌅" : "🌙"}{" "}
         {locale === "ar" ? topic.name_ar : topic.name_en}
       </h1>
-      <p className="mb-6 text-sm opacity-60">
+      <p className="mb-6 text-sm wird-muted">
         {adhkar.length} {t("adhkar.count")}
       </p>
 

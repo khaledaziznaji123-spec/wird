@@ -5,9 +5,14 @@
   },
   "common": {
     "language": "العربية",
-    "toggleAria": "Switch language to Arabic"
+    "toggleAria": "Switch language to Arabic",
+    "comingSoon": "Coming soon, inshaAllah 🌱",
+    "support": "Support"
   },
   "nav": {
+    "quran": "Quran",
+    "adhkar": "Adhkar",
+    "hadith": "Hadith",
     "profile": "Profile"
   },
   "auth": {
@@ -16,7 +21,7 @@
     "email": "Email",
     "password": "Password",
     "login": "Log in",
-    "signup": "Sign up",
+    "signup": "Create account",
     "logout": "Log out",
     "confirmLogout": "Are you sure you want to log out?",
     "loading": "Please wait…",
@@ -38,7 +43,8 @@
   },
   "home": {
     "welcome": "Welcome to Wird",
-    "intro": "Build a consistent daily habit — adhkar with proof, the Quran, and authentic hadith, all in one place.",
+    "intro": "Adhkar with proof, the Quran, and authentic hadith — build a consistent daily habit, all in one place.",
+    "chooseSection": "Where would you like to begin?",
     "streak": "Keep your streak alive"
   }
 }

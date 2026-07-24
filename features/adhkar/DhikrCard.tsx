@@ -12,11 +12,8 @@ export default function DhikrCard({ dhikr }: { dhikr: Dhikr }) {
 
   return (
     <div
-      className={`rounded-2xl border p-5 transition-colors ${
-        done
-          ? "border-green-500/40 bg-green-500/10"
-          : "border-white/10 bg-white/[0.03]"
-      }`}
+      className="wird-card p-5"
+      style={done ? { borderColor: "var(--wird-green)", background: "#f1f8f3" } : undefined}
     >
       <p className="text-2xl leading-loose">{dhikr.arabic_text}</p>
 
@@ -25,21 +22,21 @@ export default function DhikrCard({ dhikr }: { dhikr: Dhikr }) {
           type="button"
           onClick={() => setRemaining((r) => Math.max(0, r - 1))}
           disabled={done}
-          className="rounded-full px-5 py-2 font-bold text-black transition-opacity disabled:opacity-60"
-          style={{ backgroundColor: done ? "#22c55e" : "var(--wird-gold)" }}
+          className="rounded-full px-5 py-2 font-bold text-white transition-opacity disabled:opacity-90"
+          style={{ background: done ? "var(--wird-green)" : "var(--wird-gold)" }}
         >
           {done ? `✓ ${t("adhkar.done")}` : `${t("adhkar.tap")} · ${remaining}`}
         </button>
 
         {dhikr.count_description ? (
-          <span className="text-xs opacity-60">{dhikr.count_description}</span>
+          <span className="text-xs wird-muted">{dhikr.count_description}</span>
         ) : null}
 
         {done ? (
           <button
             type="button"
             onClick={() => setRemaining(dhikr.repeat_count)}
-            className="text-xs underline opacity-70"
+            className="text-xs underline wird-muted"
           >
             {t("adhkar.reset")}
           </button>
@@ -51,17 +48,18 @@ export default function DhikrCard({ dhikr }: { dhikr: Dhikr }) {
           <button
             type="button"
             onClick={() => setShowProof((s) => !s)}
-            className="text-sm underline"
-            style={{ color: "var(--wird-gold)" }}
+            className="text-sm font-semibold"
+            style={{ color: "var(--wird-green)" }}
           >
             📜 {showProof ? t("adhkar.hideProof") : t("adhkar.showProof")}
           </button>
           {showProof ? (
-            <div className="mt-2 space-y-2 rounded-lg bg-black/20 p-3 text-sm leading-relaxed opacity-90">
+            <div
+              className="mt-2 space-y-2 rounded-lg p-3 text-sm leading-relaxed"
+              style={{ background: "#f4f1e8", border: "1px solid var(--wird-border)" }}
+            >
               <p>{dhikr.source_proof}</p>
-              {dhikr.virtue ? (
-                <p className="opacity-70">✨ {dhikr.virtue}</p>
-              ) : null}
+              {dhikr.virtue ? <p className="wird-muted">✨ {dhikr.virtue}</p> : null}
             </div>
           ) : null}
         </div>
