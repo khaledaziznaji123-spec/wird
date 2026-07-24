@@ -7,6 +7,21 @@
     "language": "العربية",
     "toggleAria": "Switch language to Arabic"
   },
+  "nav": {
+    "profile": "Profile"
+  },
+  "auth": {
+    "loginTitle": "Welcome back",
+    "signupTitle": "Create your account",
+    "email": "Email",
+    "password": "Password",
+    "login": "Log in",
+    "signup": "Sign up",
+    "logout": "Log out",
+    "loading": "Please wait…",
+    "noAccount": "New here?",
+    "haveAccount": "Already have an account?"
+  },
   "home": {
     "welcome": "Welcome to Wird",
     "intro": "Build a consistent daily habit — adhkar with proof, the Quran, and authentic hadith, all in one place.",

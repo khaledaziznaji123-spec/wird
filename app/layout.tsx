@@ -12,6 +12,7 @@ import {
 import { I18nProvider } from "@/lib/i18n-context";
 import Header from "@/components/Header";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
+import { createClient } from "@/lib/supabase/server";
 
 // Cairo supports both Arabic and Latin — ideal for a bilingual UI.
 const cairo = Cairo({
@@ -38,6 +39,11 @@ export default async function RootLayout({
   const locale = isLocale(cookieLocale) ? cookieLocale : defaultLocale;
   const messages = getMessages(locale);
 
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   return (
     <html
       lang={locale}
@@ -46,7 +52,7 @@ export default async function RootLayout({
     >
       <body className="flex min-h-full flex-col">
         <I18nProvider locale={locale} messages={messages}>
-          <Header />
+          <Header userEmail={user?.email ?? null} />
           <main className="w-full flex-1">{children}</main>
         </I18nProvider>
         <ServiceWorkerRegister />
