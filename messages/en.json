@@ -111,7 +111,7 @@
     "aligned": "Facing the Qibla!",
     "enable": "Enable compass",
     "waiting": "Move your phone to start the compass",
-    "noCompass": "No compass on this device — here's the direction on the map. Open Wird on your phone for the live compass."
+    "noCompass": "The arrow only spins on a phone (it needs a compass sensor). Open Wird on your phone to use it live."
   },
   "ruqya": {
     "title": "Ruqya",
