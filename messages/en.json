@@ -110,7 +110,8 @@
     "turn": "Turn until 🕋 reaches the top ▲",
     "aligned": "Facing the Qibla!",
     "enable": "Enable compass",
-    "waiting": "Move your phone to start the compass"
+    "waiting": "Move your phone to start the compass",
+    "noCompass": "No compass on this device — here's the direction on the map. Open Wird on your phone for the live compass."
   },
   "ruqya": {
     "title": "Ruqya",
