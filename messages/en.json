@@ -105,8 +105,12 @@
   "qibla": {
     "title": "Qibla",
     "fromNorth": "from North",
-    "maps": "Show the way in Google Maps",
-    "hint": "Tap the button to see the exact direction to the Kaaba on the map."
+    "maps": "Or open in Google Maps",
+    "you": "your phone",
+    "turn": "Turn until 🕋 reaches the top ▲",
+    "aligned": "Facing the Qibla!",
+    "enable": "Enable compass",
+    "waiting": "Move your phone to start the compass"
   },
   "ruqya": {
     "title": "Ruqya",
