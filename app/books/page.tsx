@@ -16,10 +16,23 @@ export default async function BooksPage() {
 
       <div className="grid gap-3 sm:grid-cols-2">
         {books.map((b) => (
-          <Link key={b.slug} href={`/books/${b.slug}`} className="wird-card flex items-center gap-3 p-4 font-bold">
-            <span className="text-3xl">{b.emoji}</span>
-            {locale === "ar" ? b.title_ar : b.title_en}
-          </Link>
+          <a
+            key={b.slug}
+            href={b.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="wird-card flex items-center gap-3 p-4"
+          >
+            <span className="text-4xl">{b.emoji}</span>
+            <span>
+              <span className="block font-bold">
+                {locale === "ar" ? b.title_ar : b.title_en}
+              </span>
+              <span className="block text-xs wird-muted">
+                {locale === "ar" ? b.author_ar : b.author_en} · {t("books.read")} ↗
+              </span>
+            </span>
+          </a>
         ))}
       </div>
     </section>

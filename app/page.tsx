@@ -99,14 +99,18 @@ export default async function Home() {
         </h3>
         <div className="grid gap-3 sm:grid-cols-2">
           {books.map((b) => (
-            <Link
+            <a
               key={b.slug}
-              href={`/books/${b.slug}`}
-              className="wird-card flex items-center gap-3 p-4 font-bold"
+              href={b.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="wird-card flex items-center gap-3 p-4"
             >
               <span className="text-3xl">{b.emoji}</span>
-              {locale === "ar" ? b.title_ar : b.title_en}
-            </Link>
+              <span className="font-bold">
+                {locale === "ar" ? b.title_ar : b.title_en} ↗
+              </span>
+            </a>
           ))}
         </div>
       </div>

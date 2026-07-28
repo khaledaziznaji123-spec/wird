@@ -104,10 +104,9 @@
   },
   "qibla": {
     "title": "Qibla",
-    "enable": "Enable compass",
-    "rotate": "Move your phone in a figure-8 to calibrate",
-    "aligned": "Facing the Qibla!",
-    "hint": "Turn until the Kaaba 🕋 points straight up."
+    "fromNorth": "from North",
+    "maps": "Show the way in Google Maps",
+    "hint": "Tap the button to see the exact direction to the Kaaba on the map."
   },
   "ruqya": {
     "title": "Ruqya",
@@ -128,7 +127,7 @@
   },
   "books": {
     "title": "Books",
-    "intro": "Short reads on Islam and the Prophets.",
+    "intro": "Full Islamic books — read them free.",
     "read": "Read"
   },
   "profile": {
