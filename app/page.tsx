@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { getServerT } from "@/lib/i18n-server";
+import { getStreak } from "@/features/streak/data";
 
 export default async function Home() {
   const supabase = await createClient();
@@ -45,6 +46,8 @@ export default async function Home() {
     { href: "/profile", em: "👤", label: t("nav.profile") },
   ];
 
+  const streak = await getStreak();
+
   return (
     <section className="mx-auto max-w-2xl px-6 py-12">
       <h1
@@ -53,6 +56,14 @@ export default async function Home() {
       >
         {t("home.welcome")}
       </h1>
+
+      <div className="mx-auto mb-8 mt-3 max-w-xs rounded-full py-2 text-center font-bold"
+        style={{ background: "#f1f8f3", border: "1px solid var(--wird-border)" }}>
+        {streak.current > 0
+          ? `🔥 ${streak.current} ${t("streak.banner")}`
+          : `🌱 ${t("streak.none")}`}
+      </div>
+
       <p className="mb-8 text-center wird-muted">{t("home.chooseSection")}</p>
 
       <div className="grid grid-cols-2 gap-4 sm:gap-5">

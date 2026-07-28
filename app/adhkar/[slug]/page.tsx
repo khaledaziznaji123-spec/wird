@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTopic, getAdhkarForTopic } from "@/features/adhkar/data";
-import DhikrCard from "@/features/adhkar/DhikrCard";
+import AdhkarRunner from "@/features/adhkar/AdhkarRunner";
+import { isTopicDoneToday } from "@/features/streak/data";
+import { createClient } from "@/lib/supabase/server";
 import { getServerT } from "@/lib/i18n-server";
 
 export default async function TopicPage({
@@ -13,10 +15,19 @@ export default async function TopicPage({
   const topic = await getTopic(slug);
   if (!topic) notFound();
 
-  const [adhkar, { t, locale }] = await Promise.all([
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const utcToday = new Date().toISOString().slice(0, 10);
+  const [adhkar, { t, locale }, alreadyDone] = await Promise.all([
     getAdhkarForTopic(topic.id),
     getServerT(),
+    user ? isTopicDoneToday(topic.id, utcToday) : Promise.resolve(false),
   ]);
+
+  const isRoutine = topic.kind === "routine";
 
   return (
     <section className="mx-auto max-w-2xl px-5 py-8">
@@ -24,22 +35,22 @@ export default async function TopicPage({
         ← {t("adhkar.back")}
       </Link>
 
-      <h1
-        className="mb-1 mt-3 text-3xl font-extrabold"
-        style={{ color: "var(--wird-green)" }}
-      >
-        {slug === "morning" ? "🌅" : "🌙"}{" "}
+      <h1 className="mb-1 mt-3 text-3xl font-extrabold" style={{ color: "var(--wird-green)" }}>
+        {slug === "morning" ? "🌅" : slug === "evening" ? "🌙" : "📿"}{" "}
         {locale === "ar" ? topic.name_ar : topic.name_en}
       </h1>
       <p className="mb-6 text-sm wird-muted">
         {adhkar.length} {t("adhkar.count")}
+        {isRoutine ? ` · ${t("adhkar.finishForStreak")}` : ""}
       </p>
 
-      <div className="flex flex-col gap-4">
-        {adhkar.map((d) => (
-          <DhikrCard key={d.id} dhikr={d} />
-        ))}
-      </div>
+      <AdhkarRunner
+        adhkar={adhkar}
+        topicId={topic.id}
+        isRoutine={isRoutine}
+        isLoggedIn={!!user}
+        alreadyDone={alreadyDone}
+      />
     </section>
   );
 }

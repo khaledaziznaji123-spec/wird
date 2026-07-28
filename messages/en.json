@@ -44,7 +44,34 @@
     "searchPlaceholder": "Search for a dhikr about… (sleep, worry, travel)",
     "results": "results",
     "noResults": "No adhkar found for that — try another word.",
-    "moreTopics": "More situations"
+    "moreTopics": "More situations",
+    "allDone": "All done — masha’Allah!",
+    "finishForStreak": "finish all to log your streak"
+  },
+  "streak": {
+    "dayDone": "Day complete — streak counted!",
+    "current": "Current streak",
+    "longest": "Longest",
+    "days": "days",
+    "banner": "day streak",
+    "none": "Start today — complete your morning or evening adhkar"
+  },
+  "quran": {
+    "play": "Play",
+    "pause": "Pause",
+    "prev": "Prev",
+    "next": "Next",
+    "page": "Page",
+    "error": "Couldn't load the page — try again."
+  },
+  "support": {
+    "intro": "Questions, feedback, or a problem? Send us a message.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send",
+    "sending": "Sending…",
+    "success": "Jazak Allah khayr — your message was sent!"
   },
   "home": {
     "welcome": "Welcome to Wird",

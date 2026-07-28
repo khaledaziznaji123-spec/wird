@@ -1,14 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useT } from "@/lib/i18n-context";
 import type { Dhikr } from "./data";
 
-export default function DhikrCard({ dhikr }: { dhikr: Dhikr }) {
+export default function DhikrCard({
+  dhikr,
+  index,
+  onDoneChange,
+}: {
+  dhikr: Dhikr;
+  index?: number;
+  onDoneChange?: (index: number, done: boolean) => void;
+}) {
   const t = useT();
   const [remaining, setRemaining] = useState(dhikr.repeat_count);
   const [showProof, setShowProof] = useState(false);
   const done = remaining <= 0;
+
+  useEffect(() => {
+    if (onDoneChange && index !== undefined) onDoneChange(index, done);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [done]);
 
   return (
     <div
