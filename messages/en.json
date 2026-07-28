@@ -64,6 +64,16 @@
     "page": "Page",
     "error": "Couldn't load the page — try again."
   },
+  "hadith": {
+    "searchPlaceholder": "Search a topic… (patience, mercy, prayer)",
+    "results": "results",
+    "noResults": "No hadith found — try another word.",
+    "save": "Save",
+    "saved": "Saved",
+    "favorites": "Your saved hadith",
+    "searchPrompt": "Search any topic to find authentic hadith (Bukhari & Muslim).",
+    "empty": "No saved hadith yet — search and tap ☆ to save one."
+  },
   "support": {
     "intro": "Questions, feedback, or a problem? Send us a message.",
     "name": "Name",
