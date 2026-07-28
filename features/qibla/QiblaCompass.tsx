@@ -61,11 +61,12 @@ export default function QiblaCompass() {
       requestPermission?: () => Promise<string>;
     };
     try {
-      if ((await D.requestPermission?.()) === "granted") {
-        setNeedMotion(false);
-        startCompass();
+      if (typeof D?.requestPermission === "function") {
+        if ((await D.requestPermission()) !== "granted") return;
       }
     } catch {}
+    setNeedMotion(false);
+    startCompass();
   }
 
   if (state === "loading") return <p className="wird-muted">📍 {t("prayer.locating")}</p>;
@@ -111,16 +112,15 @@ export default function QiblaCompass() {
       </div>
 
       {heading == null ? (
-        needMotion ? (
+        <>
           <button type="button" onClick={enableMotion} className="wird-btn">
             🧭 {t("qibla.enable")}
           </button>
-        ) : (
-          <p className="text-sm wird-muted">🧭 {t("qibla.waiting")}</p>
-        )
+          <p className="text-xs wird-muted">{t("qibla.waiting")}</p>
+        </>
       ) : (
         <p className="text-xs wird-muted">
-          🕋 {Math.round(bearing)}° {t("qibla.fromNorth")}
+          🧭 {Math.round(heading)}° · 🕋 {Math.round(bearing)}° {t("qibla.fromNorth")}
         </p>
       )}
 
