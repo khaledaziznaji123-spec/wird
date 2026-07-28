@@ -82,6 +82,50 @@
     "searchPrompt": "Search any topic to find authentic hadith (Bukhari & Muslim).",
     "empty": "No saved hadith yet — search and tap ☆ to save one."
   },
+  "prayer": {
+    "title": "Prayer times",
+    "on": "On",
+    "off": "Off",
+    "locating": "Getting your location…",
+    "needLocation": "Allow location to see prayer times",
+    "error": "Couldn't load prayer times",
+    "timeFor": "Time for",
+    "alarmBody": "It's time to pray 🤲",
+    "fajr": "Fajr",
+    "dhuhr": "Dhuhr",
+    "asr": "Asr",
+    "maghrib": "Maghrib",
+    "isha": "Isha"
+  },
+  "qibla": {
+    "title": "Qibla",
+    "enable": "Enable compass",
+    "rotate": "Move your phone in a figure-8 to calibrate",
+    "aligned": "Facing the Qibla!",
+    "hint": "Turn until the Kaaba 🕋 points straight up."
+  },
+  "ruqya": {
+    "title": "Ruqya",
+    "intro": "Healing recitation — Al-Fatiha and the protective surahs.",
+    "reciter": "Reciter",
+    "play": "Play all",
+    "pause": "Pause"
+  },
+  "night": {
+    "title": "Night Quran",
+    "intro": "Calming recitation to fall asleep to. Set a timer and it stops on its own.",
+    "timer": "Sleep timer",
+    "off": "Off",
+    "play": "Play",
+    "pause": "Pause",
+    "min": "min",
+    "stops": "stops in"
+  },
+  "books": {
+    "title": "Books",
+    "intro": "Short reads on Islam and the Prophets.",
+    "read": "Read"
+  },
   "profile": {
     "memberSince": "Member since",
     "share": "Share Wird with friends",

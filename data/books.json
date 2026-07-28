@@ -1,0 +1,106 @@
+[
+  {
+    "slug": "five-pillars",
+    "emoji": "🕌",
+    "title_ar": "أركان الإسلام الخمسة",
+    "title_en": "The Five Pillars of Islam",
+    "body_ar": [
+      "بُني الإسلام على خمسة أركان، وهي أساس دين المسلم.",
+      "1) الشهادتان: أن تشهد أن لا إله إلا الله وأن محمدًا رسول الله.",
+      "2) إقامة الصلاة: خمس صلوات في اليوم والليلة.",
+      "3) إيتاء الزكاة: إخراج قدرٍ من المال للفقراء والمحتاجين.",
+      "4) صوم رمضان: الإمساك عن الطعام والشراب من الفجر إلى المغرب.",
+      "5) حجّ البيت لمن استطاع إليه سبيلًا."
+    ],
+    "body_en": [
+      "Islam is built on five pillars — the foundation of a Muslim's faith.",
+      "1) The Shahada: to testify that there is no god but Allah and that Muhammad is His Messenger.",
+      "2) Salah: performing the five daily prayers.",
+      "3) Zakat: giving a portion of one's wealth to those in need.",
+      "4) Fasting Ramadan: abstaining from food and drink from dawn to sunset.",
+      "5) Hajj: pilgrimage to the Kaaba for those who are able."
+    ]
+  },
+  {
+    "slug": "articles-of-faith",
+    "emoji": "🌙",
+    "title_ar": "أركان الإيمان الستة",
+    "title_en": "The Six Articles of Faith",
+    "body_ar": [
+      "الإيمان في الإسلام يقوم على ستة أركان:",
+      "1) الإيمان بالله. 2) الإيمان بملائكته. 3) الإيمان بكتبه.",
+      "4) الإيمان برسله. 5) الإيمان باليوم الآخر. 6) الإيمان بالقدر خيره وشرّه.",
+      "من آمن بهذه الأركان الستة فقد استكمل أصول الإيمان."
+    ],
+    "body_en": [
+      "Faith (Iman) in Islam rests on six articles:",
+      "1) Belief in Allah. 2) Belief in His angels. 3) Belief in His books.",
+      "4) Belief in His messengers. 5) Belief in the Last Day. 6) Belief in divine decree (Qadar), the good and the bad of it.",
+      "Whoever believes in these six has completed the foundations of faith."
+    ]
+  },
+  {
+    "slug": "prophet-ibrahim",
+    "emoji": "🔥",
+    "title_ar": "نبي الله إبراهيم عليه السلام",
+    "title_en": "Prophet Ibrahim (Abraham) ﷺ",
+    "body_ar": [
+      "إبراهيم عليه السلام هو خليل الرحمن وأبو الأنبياء.",
+      "دعا قومه إلى عبادة الله وحده، وكسر أصنامهم، فألقَوه في النار، فجعلها الله عليه بردًا وسلامًا.",
+      "بنى مع ابنه إسماعيل الكعبة المشرّفة، وابتلاه الله بذبح ابنه ففداه بذبحٍ عظيم — وهو أصل الأضحية."
+    ],
+    "body_en": [
+      "Ibrahim ﷺ is the 'Khalil' (close friend) of Allah and the father of the prophets.",
+      "He called his people to worship Allah alone and broke their idols, so they threw him into a fire — but Allah made it cool and safe for him.",
+      "With his son Isma'il he raised the Kaaba, and when commanded to sacrifice his son, Allah ransomed the boy with a great sacrifice — the origin of the Eid sacrifice."
+    ]
+  },
+  {
+    "slug": "prophet-musa",
+    "emoji": "🌊",
+    "title_ar": "نبي الله موسى عليه السلام",
+    "title_en": "Prophet Musa (Moses) ﷺ",
+    "body_ar": [
+      "موسى عليه السلام هو كليم الله، أرسله الله إلى فرعون الطاغية.",
+      "أيّده الله بمعجزات، منها العصا التي تحوّلت حيّة، ويده البيضاء.",
+      "أنجى الله موسى وبني إسرائيل بأن فلق لهم البحر، وأغرق فرعون وجنوده."
+    ],
+    "body_en": [
+      "Musa ﷺ is the one to whom Allah spoke directly. Allah sent him to the tyrant Pharaoh.",
+      "Allah supported him with miracles, including the staff that became a serpent and his radiant hand.",
+      "Allah saved Musa and the Children of Israel by parting the sea for them, and drowned Pharaoh and his army."
+    ]
+  },
+  {
+    "slug": "prophet-isa",
+    "emoji": "🌟",
+    "title_ar": "نبي الله عيسى عليه السلام",
+    "title_en": "Prophet Isa (Jesus) ﷺ",
+    "body_ar": [
+      "عيسى عليه السلام هو ابن مريم العذراء، ولد بمعجزةٍ من غير أب.",
+      "أيّده الله بمعجزات: أحيا الموتى بإذن الله، وأبرأ الأكمه والأبرص.",
+      "هو عبد الله ورسوله وكلمته ألقاها إلى مريم، ورفعه الله إليه."
+    ],
+    "body_en": [
+      "Isa ﷺ is the son of the Virgin Maryam, born by a miracle without a father.",
+      "Allah supported him with miracles: by Allah's leave he revived the dead and healed the blind and the leper.",
+      "He is a servant and messenger of Allah, and His word bestowed upon Maryam; Allah raised him up to Himself."
+    ]
+  },
+  {
+    "slug": "prophet-muhammad",
+    "emoji": "🕋",
+    "title_ar": "نبينا محمد ﷺ",
+    "title_en": "Prophet Muhammad ﷺ",
+    "body_ar": [
+      "محمد ﷺ هو خاتم الأنبياء والمرسلين، وُلد في مكة.",
+      "بُعث رحمةً للعالمين، ونزل عليه القرآن الكريم على مدى ثلاثٍ وعشرين سنة.",
+      "دعا الناس إلى التوحيد ومكارم الأخلاق، وكان قدوةً في الرحمة والصدق والعدل عليه أفضل الصلاة والسلام."
+    ],
+    "body_en": [
+      "Muhammad ﷺ is the final Prophet and Messenger, born in Makkah.",
+      "He was sent as a mercy to all the worlds, and the Quran was revealed to him over twenty-three years.",
+      "He called people to the oneness of Allah and to noble character, and was a model of mercy, honesty, and justice — peace and blessings be upon him."
+    ]
+  }
+]
