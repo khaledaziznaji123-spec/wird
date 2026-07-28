@@ -3,14 +3,17 @@
 import { useEffect, useRef, useState } from "react";
 import { useI18n, useT } from "@/lib/i18n-context";
 
-export type Track = { surah: number; ar: string; en: string };
+export type Track = { surah?: number; ayah?: number; ar: string; en: string };
 
 const RECITERS = [
   { id: "ar.alafasy", ar: "مشاري العفاسي", en: "Mishary Alafasy" },
   { id: "ar.abdulbasitmurattal", ar: "عبد الباسط", en: "Abdul Basit" },
 ];
-const surahUrl = (reciter: string, surah: number) =>
-  `https://cdn.islamic.network/quran/audio-surah/128/${reciter}/${surah}.mp3`;
+// Full-surah audio for surah tracks; per-ayah audio (Alafasy only) for single-ayah tracks.
+const trackUrl = (track: Track, reciter: string) =>
+  track.ayah
+    ? `https://cdn.islamic.network/quran/audio/128/ar.alafasy/${track.ayah}.mp3`
+    : `https://cdn.islamic.network/quran/audio-surah/128/${reciter}/${track.surah}.mp3`;
 
 const fmt = (s: number) =>
   `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
@@ -41,7 +44,7 @@ export default function SurahPlayer({
     setIdx(i);
     const el = audioRef.current;
     if (el) {
-      el.src = surahUrl(reciter, tracks[i].surah);
+      el.src = trackUrl(tracks[i], reciter);
       el.play().catch(() => setIdx(null));
     }
   }
@@ -135,7 +138,7 @@ export default function SurahPlayer({
           <div className="flex flex-col gap-2">
             {tracks.map((tr, i) => (
               <div
-                key={tr.surah}
+                key={i}
                 className="wird-card p-3 text-center font-semibold"
                 style={idx === i ? { borderColor: "var(--wird-green)", background: "#f1f8f3" } : undefined}
               >
@@ -149,7 +152,7 @@ export default function SurahPlayer({
         <div className="grid grid-cols-2 gap-3">
           {tracks.map((tr, i) => (
             <button
-              key={tr.surah}
+              key={i}
               type="button"
               onClick={() => (idx === i ? toggleSeq() : playIdx(i))}
               className="wird-card p-4 text-center font-bold"

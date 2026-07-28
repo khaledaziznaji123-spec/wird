@@ -82,6 +82,11 @@
     "searchPrompt": "Search any topic to find authentic hadith (Bukhari & Muslim).",
     "empty": "No saved hadith yet — search and tap ☆ to save one."
   },
+  "setup": {
+    "msg": "Enable location, notifications & motion so prayer times, the alarm, and the qibla all work.",
+    "allow": "Enable all",
+    "later": "Later"
+  },
   "prayer": {
     "title": "Prayer times",
     "on": "On",

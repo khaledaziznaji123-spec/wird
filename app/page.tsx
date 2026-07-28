@@ -3,13 +3,18 @@ import { createClient } from "@/lib/supabase/server";
 import { getServerT } from "@/lib/i18n-server";
 import { getStreak } from "@/features/streak/data";
 import PrayerTimes from "@/features/home/PrayerTimes";
+import SetupPermissions from "@/features/home/SetupPermissions";
+import QiblaCompass from "@/features/qibla/QiblaCompass";
+import SurahPlayer from "@/features/audio/SurahPlayer";
+import { RUQYA_TRACKS, NIGHT_TRACKS } from "@/features/audio/tracks";
+import books from "@/data/books.json";
 
 export default async function Home() {
   const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  const { t } = await getServerT();
+  const { t, locale } = await getServerT();
 
   // Logged OUT → centered choice: create account or log in.
   if (!user) {
@@ -39,18 +44,12 @@ export default async function Home() {
     );
   }
 
-  // Logged IN → dashboard: streak, prayer times, and extra tools.
+  // Logged IN → a scrollable dashboard with every feature laid out.
   const streak = await getStreak();
-
-  const tools = [
-    { href: "/qibla", em: "🧭", label: t("qibla.title") },
-    { href: "/ruqya", em: "🛡️", label: t("ruqya.title") },
-    { href: "/night", em: "🌙", label: t("night.title") },
-    { href: "/books", em: "📚", label: t("books.title") },
-  ];
+  const heading = "mb-3 text-lg font-extrabold";
 
   return (
-    <section className="mx-auto max-w-2xl px-6 py-10">
+    <section className="mx-auto max-w-2xl px-5 py-8">
       <h1
         className="mb-1 text-center text-3xl font-extrabold"
         style={{ color: "var(--wird-green)" }}
@@ -65,19 +64,51 @@ export default async function Home() {
           : `🌱 ${t("streak.none")}`}
       </div>
 
+      <SetupPermissions />
+
       <div className="mb-6">
         <PrayerTimes />
       </div>
 
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        {tools.map((tool) => (
-          <Link key={tool.href} href={tool.href} className="wird-tile">
-            <span className="em" aria-hidden>
-              {tool.em}
-            </span>
-            <span className="text-sm">{tool.label}</span>
-          </Link>
-        ))}
+      <div className="wird-card mb-6 p-5">
+        <h3 className={heading} style={{ color: "var(--wird-green)" }}>
+          🧭 {t("qibla.title")}
+        </h3>
+        <QiblaCompass />
+      </div>
+
+      <div className="wird-card mb-6 p-5">
+        <h3 className={heading} style={{ color: "var(--wird-green)" }}>
+          🛡️ {t("ruqya.title")}
+        </h3>
+        <p className="mb-3 text-sm wird-muted">{t("ruqya.intro")}</p>
+        <SurahPlayer tracks={RUQYA_TRACKS} mode="sequence" />
+      </div>
+
+      <div className="wird-card mb-6 p-5">
+        <h3 className={heading} style={{ color: "var(--wird-green)" }}>
+          🌙 {t("night.title")}
+        </h3>
+        <p className="mb-3 text-sm wird-muted">{t("night.intro")}</p>
+        <SurahPlayer tracks={NIGHT_TRACKS} mode="pick" showTimer />
+      </div>
+
+      <div className="mb-6">
+        <h3 className={heading} style={{ color: "var(--wird-green)" }}>
+          📚 {t("books.title")}
+        </h3>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {books.map((b) => (
+            <Link
+              key={b.slug}
+              href={`/books/${b.slug}`}
+              className="wird-card flex items-center gap-3 p-4 font-bold"
+            >
+              <span className="text-3xl">{b.emoji}</span>
+              {locale === "ar" ? b.title_ar : b.title_en}
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );

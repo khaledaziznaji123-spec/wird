@@ -1,15 +1,7 @@
 import Link from "next/link";
 import { getServerT } from "@/lib/i18n-server";
-import SurahPlayer, { type Track } from "@/features/audio/SurahPlayer";
-
-const NIGHT: Track[] = [
-  { surah: 67, ar: "سورة الملك", en: "Al-Mulk" },
-  { surah: 55, ar: "سورة الرحمن", en: "Ar-Rahman" },
-  { surah: 36, ar: "سورة يس", en: "Ya-Sin" },
-  { surah: 32, ar: "سورة السجدة", en: "As-Sajdah" },
-  { surah: 56, ar: "سورة الواقعة", en: "Al-Waqi'ah" },
-  { surah: 18, ar: "سورة الكهف", en: "Al-Kahf" },
-];
+import SurahPlayer from "@/features/audio/SurahPlayer";
+import { NIGHT_TRACKS } from "@/features/audio/tracks";
 
 export default async function NightPage() {
   const { t } = await getServerT();
@@ -22,7 +14,7 @@ export default async function NightPage() {
         🌙 {t("night.title")}
       </h1>
       <p className="mb-6 text-center wird-muted">{t("night.intro")}</p>
-      <SurahPlayer tracks={NIGHT} mode="pick" showTimer />
+      <SurahPlayer tracks={NIGHT_TRACKS} mode="pick" showTimer />
     </section>
   );
 }
