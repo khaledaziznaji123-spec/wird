@@ -135,6 +135,13 @@
     "intro": "Full Islamic books — read them free.",
     "read": "Read"
   },
+  "profileEdit": {
+    "title": "Edit profile",
+    "name": "Display name",
+    "language": "Language",
+    "save": "Save changes",
+    "saved": "Saved!"
+  },
   "profile": {
     "memberSince": "Member since",
     "share": "Share Wird with friends",

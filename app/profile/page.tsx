@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getServerT } from "@/lib/i18n-server";
 import { getStreak } from "@/features/streak/data";
 import ShareRow from "@/features/profile/ShareRow";
+import ProfileEditForm from "@/features/profile/ProfileEditForm";
 
 export default async function ProfilePage() {
   const supabase = await createClient();
@@ -19,9 +20,17 @@ export default async function ProfilePage() {
     .select("*", { count: "exact", head: true })
     .eq("user_id", user.id);
 
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("display_name, language")
+    .eq("id", user.id)
+    .maybeSingle();
+
   const emailName = (user.email ?? "?").split("@")[0];
   const displayName =
-    (user.user_metadata?.name as string | undefined) ?? emailName;
+    profile?.display_name ||
+    (user.user_metadata?.name as string | undefined) ||
+    emailName;
   const initials = displayName.slice(0, 2).toUpperCase();
   const memberSince = user.created_at
     ? new Date(user.created_at).toLocaleDateString(locale === "ar" ? "ar" : "en", {
@@ -76,6 +85,12 @@ export default async function ProfilePage() {
           </div>
         ))}
       </div>
+
+      {/* Edit profile */}
+      <ProfileEditForm
+        displayName={profile?.display_name ?? ""}
+        language={profile?.language ?? locale}
+      />
 
       {/* Share + customer service */}
       <ShareRow />
