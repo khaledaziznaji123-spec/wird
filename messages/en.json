@@ -41,12 +41,16 @@
     "count": "adhkar",
     "empty": "No adhkar loaded yet.",
     "open": "Open Adhkar",
-    "searchPlaceholder": "Search for a dhikr about… (sleep, worry, travel)",
+    "searchPlaceholder": "Search a topic and find a relevant dhikr",
     "results": "results",
     "noResults": "No adhkar found for that — try another word.",
     "moreTopics": "More situations",
     "allDone": "All done — masha’Allah!",
-    "finishForStreak": "finish all to log your streak"
+    "finishForStreak": "finish all to log your streak",
+    "save": "Save",
+    "saved": "Saved",
+    "savedTopic": "⭐ Saved",
+    "noSaved": "No saved adhkar yet — tap ☆ on any dhikr to save it."
   },
   "streak": {
     "dayDone": "Day complete — streak counted!",
@@ -68,7 +72,7 @@
     "error": "Couldn't load the page — try again."
   },
   "hadith": {
-    "searchPlaceholder": "Search a topic… (patience, mercy, prayer)",
+    "searchPlaceholder": "Search a topic and find a relevant hadith",
     "results": "results",
     "noResults": "No hadith found — try another word.",
     "save": "Save",
@@ -92,6 +96,8 @@
     "message": "Message",
     "send": "Send",
     "sending": "Sending…",
+    "sendingAs": "Sending from:",
+    "needMsg": "Please write a message.",
     "success": "Jazak Allah khayr — your message was sent!"
   },
   "home": {

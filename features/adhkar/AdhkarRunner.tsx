@@ -12,12 +12,14 @@ export default function AdhkarRunner({
   isRoutine,
   isLoggedIn,
   alreadyDone,
+  favIds = [],
 }: {
   adhkar: Dhikr[];
   topicId: number;
   isRoutine: boolean;
   isLoggedIn: boolean;
   alreadyDone: boolean;
+  favIds?: number[];
 }) {
   const t = useT();
   const [done, setDone] = useState<boolean[]>(() => adhkar.map(() => false));
@@ -55,7 +57,14 @@ export default function AdhkarRunner({
 
       <div className="flex flex-col gap-4">
         {adhkar.map((d, i) => (
-          <DhikrCard key={d.id} dhikr={d} index={i} onDoneChange={setOne} />
+          <DhikrCard
+            key={d.id}
+            dhikr={d}
+            index={i}
+            onDoneChange={setOne}
+            isFav={favIds.includes(d.id)}
+            canFav={isLoggedIn}
+          />
         ))}
       </div>
 

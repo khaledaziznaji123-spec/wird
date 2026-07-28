@@ -15,6 +15,18 @@ const SUGGESTIONS = [
   { q: "forgiveness", en: "Forgiveness", ar: "المغفرة" },
   { q: "kindness", en: "Kindness", ar: "الإحسان" },
   { q: "fasting", en: "Fasting", ar: "الصيام" },
+  { q: "intention", en: "Intention", ar: "النية" },
+  { q: "anger", en: "Anger", ar: "الغضب" },
+  { q: "truth", en: "Truthfulness", ar: "الصدق" },
+  { q: "trust", en: "Trust in Allah", ar: "التوكل" },
+  { q: "neighbour", en: "Neighbours", ar: "الجار" },
+  { q: "gratitude", en: "Gratitude", ar: "الشكر" },
+  { q: "repentance", en: "Repentance", ar: "التوبة" },
+  { q: "marriage", en: "Marriage", ar: "الزواج" },
+  { q: "wealth", en: "Wealth", ar: "المال" },
+  { q: "death", en: "Death", ar: "الموت" },
+  { q: "dua", en: "Supplication", ar: "الدعاء" },
+  { q: "brother", en: "Brotherhood", ar: "الأخوة" },
 ];
 
 export default async function HadithPage({

@@ -11,13 +11,14 @@ export default function Header({ userEmail }: { userEmail: string | null }) {
   const pathname = usePathname();
 
   const links = [
+    { href: "/", em: "🏠", label: t("nav.home") },
     { href: "/quran", em: "📖", label: t("nav.quran") },
     { href: "/adhkar", em: "📿", label: t("nav.adhkar") },
     { href: "/hadith", em: "📜", label: t("nav.hadith") },
     { href: "/profile", em: "👤", label: t("nav.profile") },
   ];
   const isActive = (href: string) =>
-    pathname === href || pathname.startsWith(href + "/");
+    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
 
   return (
     <header

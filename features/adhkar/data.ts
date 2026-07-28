@@ -63,6 +63,37 @@ export async function getAdhkarForTopic(topicId: number): Promise<Dhikr[]> {
   return (data ?? []).map((row) => row.adhkar as unknown as Dhikr);
 }
 
+/** IDs of adhkar the current user has saved. */
+export async function getAdhkarFavoriteIds(): Promise<number[]> {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return [];
+  const { data } = await supabase
+    .from("adhkar_favorites")
+    .select("adhkar_id")
+    .eq("user_id", user.id);
+  return (data ?? []).map((r) => r.adhkar_id);
+}
+
+/** The current user's saved adhkar. */
+export async function getFavoriteAdhkar(): Promise<Dhikr[]> {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return [];
+  const { data: favs } = await supabase
+    .from("adhkar_favorites")
+    .select("adhkar_id")
+    .eq("user_id", user.id);
+  const ids = (favs ?? []).map((r) => r.adhkar_id);
+  if (ids.length === 0) return [];
+  const { data } = await supabase.from("adhkar").select("*").in("id", ids);
+  return data ?? [];
+}
+
 /**
  * Search adhkar by a free-text topic: matches the query against the dhikr's
  * Arabic text and against topic names (so "sleep"/"نوم" finds sleep adhkar).

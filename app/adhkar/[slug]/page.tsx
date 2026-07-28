@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getTopic, getAdhkarForTopic } from "@/features/adhkar/data";
+import { getTopic, getAdhkarForTopic, getAdhkarFavoriteIds } from "@/features/adhkar/data";
 import AdhkarRunner from "@/features/adhkar/AdhkarRunner";
 import { isTopicDoneToday } from "@/features/streak/data";
 import { createClient } from "@/lib/supabase/server";
@@ -21,10 +21,11 @@ export default async function TopicPage({
   } = await supabase.auth.getUser();
 
   const utcToday = new Date().toISOString().slice(0, 10);
-  const [adhkar, { t, locale }, alreadyDone] = await Promise.all([
+  const [adhkar, { t, locale }, alreadyDone, favIds] = await Promise.all([
     getAdhkarForTopic(topic.id),
     getServerT(),
     user ? isTopicDoneToday(topic.id, utcToday) : Promise.resolve(false),
+    user ? getAdhkarFavoriteIds() : Promise.resolve([]),
   ]);
 
   const isRoutine = topic.kind === "routine";
@@ -50,6 +51,7 @@ export default async function TopicPage({
         isRoutine={isRoutine}
         isLoggedIn={!!user}
         alreadyDone={alreadyDone}
+        favIds={favIds}
       />
     </section>
   );

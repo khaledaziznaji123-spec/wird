@@ -1,21 +1,28 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useT } from "@/lib/i18n-context";
+import { toggleAdhkarFavorite } from "./favActions";
 import type { Dhikr } from "./data";
 
 export default function DhikrCard({
   dhikr,
   index,
   onDoneChange,
+  isFav = false,
+  canFav = false,
 }: {
   dhikr: Dhikr;
   index?: number;
   onDoneChange?: (index: number, done: boolean) => void;
+  isFav?: boolean;
+  canFav?: boolean;
 }) {
   const t = useT();
   const [remaining, setRemaining] = useState(dhikr.repeat_count);
   const [showProof, setShowProof] = useState(false);
+  const [saved, setSaved] = useState(isFav);
+  const [, startFav] = useTransition();
   const done = remaining <= 0;
 
   useEffect(() => {
@@ -23,11 +30,32 @@ export default function DhikrCard({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [done]);
 
+  function onFav() {
+    setSaved((s) => !s);
+    startFav(async () => {
+      const r = await toggleAdhkarFavorite(dhikr.id);
+      if (r.ok) setSaved(r.saved);
+    });
+  }
+
   return (
     <div
       className="wird-card p-5"
       style={done ? { borderColor: "var(--wird-green)", background: "#f1f8f3" } : undefined}
     >
+      {canFav ? (
+        <div className="mb-1 flex justify-end">
+          <button
+            type="button"
+            onClick={onFav}
+            aria-label="save"
+            className="text-xl leading-none"
+            title={saved ? t("adhkar.saved") : t("adhkar.save")}
+          >
+            {saved ? "⭐" : "☆"}
+          </button>
+        </div>
+      ) : null}
       <p className="text-2xl leading-loose">{dhikr.arabic_text}</p>
 
       <div className="mt-4 flex flex-wrap items-center gap-3">
