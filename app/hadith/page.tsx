@@ -4,6 +4,19 @@ import HadithCard from "@/features/hadith/HadithCard";
 import { createClient } from "@/lib/supabase/server";
 import { getServerT } from "@/lib/i18n-server";
 
+const SUGGESTIONS = [
+  { q: "patience", en: "Patience", ar: "الصبر" },
+  { q: "mercy", en: "Mercy", ar: "الرحمة" },
+  { q: "prayer", en: "Prayer", ar: "الصلاة" },
+  { q: "charity", en: "Charity", ar: "الصدقة" },
+  { q: "parents", en: "Parents", ar: "الوالدين" },
+  { q: "knowledge", en: "Knowledge", ar: "العلم" },
+  { q: "paradise", en: "Paradise", ar: "الجنة" },
+  { q: "forgiveness", en: "Forgiveness", ar: "المغفرة" },
+  { q: "kindness", en: "Kindness", ar: "الإحسان" },
+  { q: "fasting", en: "Fasting", ar: "الصيام" },
+];
+
 export default async function HadithPage({
   searchParams,
 }: {
@@ -11,7 +24,7 @@ export default async function HadithPage({
 }) {
   const { q } = await searchParams;
   const query = (q ?? "").trim();
-  const { t } = await getServerT();
+  const { t, locale } = await getServerT();
 
   const supabase = await createClient();
   const {
@@ -61,6 +74,20 @@ export default async function HadithPage({
         </>
       ) : (
         <>
+          <h2 className="mb-3 text-sm font-bold wird-muted">{t("hadith.suggestions")}</h2>
+          <div className="mb-8 flex flex-wrap gap-2">
+            {SUGGESTIONS.map((s) => (
+              <Link
+                key={s.q}
+                href={`/hadith?q=${s.q}`}
+                className="rounded-full px-4 py-2 text-sm font-semibold"
+                style={{ background: "var(--wird-card)", border: "1px solid var(--wird-border)" }}
+              >
+                {locale === "ar" ? s.ar : s.en}
+              </Link>
+            ))}
+          </div>
+
           <h2 className="mb-3 text-sm font-bold wird-muted">{t("hadith.favorites")}</h2>
           {favorites.length === 0 ? (
             <p className="wird-muted">{canSave ? t("hadith.empty") : t("hadith.searchPrompt")}</p>

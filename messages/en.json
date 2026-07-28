@@ -62,6 +62,9 @@
     "prev": "Prev",
     "next": "Next",
     "page": "Page",
+    "surah": "Surah",
+    "juz": "Juz",
+    "go": "Go",
     "error": "Couldn't load the page — try again."
   },
   "hadith": {
@@ -71,8 +74,16 @@
     "save": "Save",
     "saved": "Saved",
     "favorites": "Your saved hadith",
+    "suggestions": "Try a topic",
     "searchPrompt": "Search any topic to find authentic hadith (Bukhari & Muslim).",
     "empty": "No saved hadith yet — search and tap ☆ to save one."
+  },
+  "profile": {
+    "memberSince": "Member since",
+    "share": "Share Wird with friends",
+    "customerService": "Customer service",
+    "contact": "Contact us on WhatsApp",
+    "copied": "Link copied! Paste it in your app 🔗"
   },
   "support": {
     "intro": "Questions, feedback, or a problem? Send us a message.",

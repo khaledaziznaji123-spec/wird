@@ -3,6 +3,7 @@ import { getQuranPage } from "@/features/quran/data";
 import QuranReader from "@/features/quran/QuranReader";
 import { createClient } from "@/lib/supabase/server";
 import { getServerT } from "@/lib/i18n-server";
+import quranNav from "@/data/quran-nav.json";
 
 export default async function QuranPage({
   searchParams,
@@ -48,7 +49,12 @@ export default async function QuranPage({
         📖 {t("nav.quran")}
       </h1>
       {data ? (
-        <QuranReader page={page} ayahs={data.ayahs} />
+        <QuranReader
+          page={page}
+          ayahs={data.ayahs}
+          surahs={quranNav.surahs}
+          juzs={quranNav.juzs}
+        />
       ) : (
         <p className="wird-muted">{t("quran.error")}</p>
       )}
