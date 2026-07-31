@@ -25,6 +25,24 @@ export default function QiblaCompass() {
   const [heading, setHeading] = useState<number | null>(null);
   const [state, setState] = useState<"loading" | "denied" | "error" | "ok">("loading");
   const [needMotion, setNeedMotion] = useState(false);
+  const [place, setPlace] = useState<string | null>(null);
+  const [cityInput, setCityInput] = useState("");
+
+  async function setCity() {
+    const q = cityInput.trim();
+    if (!q) return;
+    try {
+      const r = await fetch(
+        `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=1`,
+      );
+      const j = await r.json();
+      if (j && j[0]) {
+        setCoords({ lat: parseFloat(j[0].lat), lng: parseFloat(j[0].lon) });
+        setPlace(j[0].display_name.split(",").slice(0, 2).join(", "));
+        setState("ok");
+      }
+    } catch {}
+  }
 
   useEffect(() => {
     if (!("geolocation" in navigator)) return setState("error");
@@ -73,9 +91,44 @@ export default function QiblaCompass() {
     startCompass();
   }
 
-  if (state === "loading") return <p className="wird-muted">📍 {t("prayer.locating")}</p>;
-  if (state === "denied") return <p className="wird-muted">📍 {t("prayer.needLocation")}</p>;
-  if (state === "error" || !coords) return <p className="wird-muted">{t("prayer.error")}</p>;
+  const cityBox = (
+    <div className="mt-2 w-full max-w-xs">
+      {place ? <p className="mb-1 text-center text-xs wird-muted">📍 {place}</p> : null}
+      <div className="flex gap-2">
+        <input
+          value={cityInput}
+          onChange={(e) => setCityInput(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              setCity();
+            }
+          }}
+          placeholder={t("qibla.cityPlaceholder")}
+          className="wird-input flex-1 text-sm"
+        />
+        <button type="button" onClick={setCity} className="wird-btn text-sm">
+          {t("qibla.set")}
+        </button>
+      </div>
+      <p className="mt-1 text-center text-[11px] wird-muted">{t("qibla.cityHint")}</p>
+    </div>
+  );
+
+  if (!coords) {
+    return (
+      <div className="flex flex-col items-center gap-4">
+        <p className="wird-muted">
+          {state === "loading"
+            ? `📍 ${t("prayer.locating")}`
+            : state === "denied"
+              ? `📍 ${t("prayer.needLocation")}`
+              : t("prayer.error")}
+        </p>
+        {cityBox}
+      </div>
+    );
+  }
 
   const bearing = bearingToKaaba(coords.lat, coords.lng);
   const live = heading != null;
@@ -138,6 +191,7 @@ export default function QiblaCompass() {
           ) : null}
         </>
       )}
+      {cityBox}
     </div>
   );
 }

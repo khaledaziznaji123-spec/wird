@@ -112,7 +112,10 @@
     "enable": "Enable compass",
     "waiting": "Move your phone to start the compass",
     "noCompass": "The arrow only spins on a phone (it needs a compass sensor). Open Wird on your phone to use it live.",
-    "northUp": "The needle points to the Qibla from North (N is at the top). Use the map to face that way — or open Wird on your phone for a live compass."
+    "northUp": "The needle points to the Qibla from North (N is at the top). Use the map to face that way — or open Wird on your phone for a live compass.",
+    "set": "Set",
+    "cityPlaceholder": "Your city",
+    "cityHint": "Direction looks wrong? Type your city to fix your location."
   },
   "ruqya": {
     "title": "Ruqya",
