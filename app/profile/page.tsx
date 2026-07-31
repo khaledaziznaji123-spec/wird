@@ -22,7 +22,7 @@ export default async function ProfilePage() {
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("display_name, language")
+    .select("display_name, language, last_quran_page")
     .eq("id", user.id)
     .maybeSingle();
 
@@ -84,6 +84,28 @@ export default async function ProfilePage() {
             <div className="text-xs wird-muted">{s.label}</div>
           </div>
         ))}
+      </div>
+
+      {/* Quick links */}
+      <h3 className="mb-3 mt-8 text-center text-sm font-bold wird-muted">
+        {t("profile.quickLinks")}
+      </h3>
+      <div className="grid grid-cols-2 gap-3">
+        <Link href="/quran" className="wird-card p-4 text-center font-bold">
+          📖 {t("nav.quran")}
+          <span className="block text-xs wird-muted">
+            {t("quran.page")} {profile?.last_quran_page ?? 1}
+          </span>
+        </Link>
+        <Link href="/hadith" className="wird-card p-4 text-center font-bold">
+          ⭐ {t("hadith.favorites")}
+        </Link>
+        <Link href="/ruqya" className="wird-card p-4 text-center font-bold">
+          🛡️ {t("ruqya.title")}
+        </Link>
+        <Link href="/books" className="wird-card p-4 text-center font-bold">
+          📚 {t("books.title")}
+        </Link>
       </div>
 
       {/* Edit profile */}

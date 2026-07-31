@@ -16,8 +16,7 @@ export default function SupportForm({ userEmail }: { userEmail: string | null })
     e.preventDefault();
     const form = e.currentTarget;
     const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value.trim();
-    const typedEmail = (form.elements.namedItem("email") as HTMLInputElement | null)?.value?.trim();
-    const email = userEmail || typedEmail || "";
+    const email = userEmail || "anonymous@wird.app";
     if (!message) {
       setError(t("support.needMsg"));
       return;
@@ -62,12 +61,7 @@ export default function SupportForm({ userEmail }: { userEmail: string | null })
         <p className="text-sm wird-muted">
           {t("support.sendingAs")} <b dir="ltr">{userEmail}</b>
         </p>
-      ) : (
-        <label className="flex flex-col gap-1 text-sm font-semibold">
-          {t("support.email")}
-          <input name="email" type="email" className="wird-input" />
-        </label>
-      )}
+      ) : null}
       <label className="flex flex-col gap-1 text-sm font-semibold">
         {t("support.message")}
         <textarea name="message" required rows={4} className="wird-input" />
