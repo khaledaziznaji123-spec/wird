@@ -18,6 +18,13 @@ const EMOJI: Record<string, string> = {
   Maghrib: "🌇",
   Isha: "🌙",
 };
+// Typical iqama = adhan + these minutes (mosques vary).
+const IQAMA: Record<string, number> = { Fajr: 20, Dhuhr: 15, Asr: 15, Maghrib: 5, Isha: 15 };
+function addMinutes(hhmm: string, min: number) {
+  const [h, m] = hhmm.split(":").map(Number);
+  const tot = (((h * 60 + m + min) % 1440) + 1440) % 1440;
+  return `${String(Math.floor(tot / 60)).padStart(2, "0")}:${String(tot % 60).padStart(2, "0")}`;
+}
 
 export default function PrayerTimes() {
   const t = useT();
@@ -154,21 +161,29 @@ export default function PrayerTimes() {
       ) : state === "error" ? (
         <p className="text-sm wird-muted">{t("prayer.error")}</p>
       ) : times ? (
-        <div className="grid grid-cols-5 gap-1 text-center">
+        <div className="overflow-hidden rounded-lg" style={{ border: "1px solid var(--wird-border)" }}>
+          <div className="grid grid-cols-3 text-center text-[11px] font-bold" style={{ background: "var(--wird-green)", color: "#fff" }}>
+            <div className="py-1.5">{t("prayer.prayer")}</div>
+            <div className="py-1.5">🔊 {t("prayer.adhan")}</div>
+            <div className="py-1.5">🕌 {t("prayer.iqama")}</div>
+          </div>
           {PRAYERS.map((p) => (
             <div
               key={p}
-              className="rounded-lg py-2"
-              style={
-                p === nextPrayer
-                  ? { background: "#f1f8f3", border: "1px solid var(--wird-green)" }
-                  : undefined
-              }
+              className="grid grid-cols-3 items-center border-t text-center text-sm"
+              style={{
+                borderColor: "var(--wird-border)",
+                background: p === nextPrayer ? "#f1f8f3" : undefined,
+              }}
             >
-              <div className="text-lg">{EMOJI[p]}</div>
-              <div className="text-[11px] font-semibold wird-muted">{t("prayer." + p.toLowerCase())}</div>
-              <div className="text-sm font-bold" dir="ltr">
+              <div className="py-2 font-semibold">
+                {EMOJI[p]} {t("prayer." + p.toLowerCase())}
+              </div>
+              <div className="py-2 font-bold" dir="ltr">
                 {times[p]}
+              </div>
+              <div className="py-2 font-bold" dir="ltr" style={{ color: "var(--wird-green)" }}>
+                {addMinutes(times[p], IQAMA[p])}
               </div>
             </div>
           ))}

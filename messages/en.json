@@ -89,6 +89,9 @@
   },
   "prayer": {
     "title": "Prayer times",
+    "prayer": "Prayer",
+    "adhan": "Adhan",
+    "iqama": "Iqama",
     "on": "On",
     "off": "Off",
     "locating": "Getting your location…",

@@ -4,7 +4,6 @@ import { getServerT } from "@/lib/i18n-server";
 import { getStreak } from "@/features/streak/data";
 import PrayerTimes from "@/features/home/PrayerTimes";
 import SetupPermissions from "@/features/home/SetupPermissions";
-import QiblaCompass from "@/features/qibla/QiblaCompass";
 import SurahPlayer from "@/features/audio/SurahPlayer";
 import { RUQYA_TRACKS, NIGHT_TRACKS } from "@/features/audio/tracks";
 import books from "@/data/books.json";
@@ -68,13 +67,6 @@ export default async function Home() {
 
       <div className="mb-6">
         <PrayerTimes />
-      </div>
-
-      <div className="wird-card mb-6 p-5">
-        <h3 className={heading} style={{ color: "var(--wird-green)" }}>
-          🧭 {t("qibla.title")}
-        </h3>
-        <QiblaCompass />
       </div>
 
       <div className="wird-card mb-6 p-5">
